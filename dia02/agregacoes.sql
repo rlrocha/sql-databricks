@@ -6,7 +6,7 @@ FROM silver_olist.cliente
 
 SELECT
   COUNT(*) AS nrLinhasNaoNulas, -- linhas não nulas
-  COUNT(idClientes) AS nrIdClientesNaoNulo -- id de clientes não nulos
+  COUNT(idCliente) AS nrIdClientesNaoNulo -- id de clientes não nulos
 
 FROM silver_olist.cliente
 
@@ -14,7 +14,7 @@ FROM silver_olist.cliente
 
 SELECT
   COUNT(*) AS nrLinhasNaoNulas, -- linhas não nulas
-  COUNT(idClientes) AS nrIdClientesNaoNulo, -- id de clientes não nulos
+  COUNT(idCliente) AS nrIdClientesNaoNulo, -- id de clientes não nulos
   COUNT(distinct idCliente) AS nrIdClienteDistintos -- id de clientes dist
 
 FROM silver_olist.cliente
@@ -23,7 +23,7 @@ FROM silver_olist.cliente
 
 SELECT
   COUNT(*) AS nrLinhasNaoNulas, -- linhas não nulas
-  COUNT(idClientes) AS nrIdClientesNaoNulo, -- id de clientes não nulos
+  COUNT(idCliente) AS nrIdClientesNaoNulo, -- id de clientes não nulos
   COUNT(DISTINCT idCliente) AS nrIdClienteDistintos, -- id de clientes distintos
   COUNT(idClienteUnico) AS nrIdClienteUnicoDistintos, -- id de clientes únicos
   COUNT(DISTINCT idClienteUnico) AS nrIdClienteUnicoDistintos -- id de clientes únicos distintos
@@ -45,7 +45,7 @@ WHERE descCidade = 'presidente prudente'
 
 SELECT
   COUNT(*) AS qtLinhas,
-  COUNT(DISTINCT idCliente) AS qtClientes
+  COUNT(DISTINCT idCliente) AS qtClientes,
   COUNT(DISTINCT idClienteUnico) AS  qtClientesUnicos
 
 FROM silver_olist.cliente
@@ -54,7 +54,7 @@ WHERE descCidade IN ('presidente prudente', 'curitiba')
 
 -- COMMAND ----------
 
-SELECT,
+SELECT
   ROUND(AVG(vlPreco), 2) AS avgPreco, -- média da coluna vlPreco (preço médio dos produtos)
   
   INT(PERCENTILE(vlPreco, 0.5)) AS medianPreco,  -- preço mediano dos produtos
