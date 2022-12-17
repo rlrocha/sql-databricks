@@ -1,4 +1,3 @@
-# sql-databricks
-Repositório com os códigos desenvolvidos  no curso de descomplicando SQL da linuxtips
+# Curso SQL com Databricks
 
-Autor: Rafael Rocha.
+Repositório com os códigos desenvolvidos no curso de SQL com Databricks.
