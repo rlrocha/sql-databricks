@@ -1,4 +1,8 @@
 -- Databricks notebook source
+SHOW TABLE
+
+-- COMMAND ----------
+
 SELECT descUF,
        COUNT(idVendedor) AS qtVendedorUF
 

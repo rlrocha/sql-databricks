@@ -1,63 +1,66 @@
 -- Databricks notebook source
-SELECT
-  descUF,
-  COUNT(DISTINCT idClienteUnico) AS qtClienteEstado
-
-FROM silver_olist.cliente
-
-GROUP BY descUF
-ORDER BY descUF -- depois do group by
+SELECT *
+FROM silver_olist.customers
 
 -- COMMAND ----------
 
 SELECT
-  descUF,
-  COUNT(DISTINCT idClienteUnico) AS qtClienteEstado
+  descState,
+  COUNT(DISTINCT idUniqueCustomer) AS qtCustomerState
 
-FROM silver_olist.cliente
+FROM silver_olist.customers
 
-GROUP BY descUF
+GROUP BY descState
+ORDER BY descState -- depois do group by
+
+-- COMMAND ----------
+
+SELECT
+  descState,
+  COUNT(DISTINCT idUniqueCustomer) AS qtCustomerState
+
+FROM silver_olist.customers
+
+GROUP BY descState
 -- ORDER BY 2 -- 1: ordenar pela segundo coluna
--- ORDER BY qtClienteEstado -- 2: ordenar pela nova coluna (só pode depoius do group by)
-ORDER BY COUNT(DISTINCT idClienteUnico)qtClienteEstado -- 3: ordenar diretamente pela mesma expressão
+ORDER BY qtCustomerState -- 2: ordenar pela nova coluna (só pode depoius do group by)
+-- ORDER BY COUNT(DISTINCT idUniqueCustomer) -- 3: ordenar diretamente pela mesma expressão
 
 -- COMMAND ----------
 
 SELECT
-  descUF,
-  COUNT(DISTINCT idClienteUnico) AS qtClienteEstado
+  descState,
+  COUNT(DISTINCT idUniqueCustomer) AS qtCustomerState
 
-FROM silver_olist.cliente
+FROM silver_olist.customers
 
-GROUP BY descUF
-ORDER BY qtClienteEstado DESC -- depois do campo (order by)
+GROUP BY descState
+ORDER BY qtCustomerState DESC -- depois do campo (order by)
 
 LIMIT 1 -- apenas uma linha
 
 -- COMMAND ----------
 
--- MAGIC % python
+-- MAGIC %python
 -- MAGIC 
 -- MAGIC data = [
--- MAGIC     
--- MAGIC     "nome": "teo", "idade": 30,
--- MAGIC     "nome": "rodrigo", "idade": 327,
--- MAGIC     "nome": "victor", "idade":20,
--- MAGIC     "nome": "gabriel", "idade":28,
--- MAGIC     "nome": "carlos", "idade":27,
--- MAGIC     "nome": "josé", "idade":24,
--- MAGIC     "nome": "fernando", "idade":34,
--- MAGIC     "nome": "bruno", "idade":37,
--- MAGIC     "nome": "patrick", "idade":31,
--- MAGIC     "nome": "dodo", "idade":31,
--- MAGIC     "nome": "alessa", "idade":31,
--- MAGIC     
+-- MAGIC     {"nome": "teo", "idade": 30},
+-- MAGIC     {"nome": "rodrigo", "idade": 327},
+-- MAGIC     {"nome": "victor", "idade":20},
+-- MAGIC     {"nome": "gabriel", "idade":28},
+-- MAGIC     {"nome": "carlos", "idade":27},
+-- MAGIC     {"nome": "josé", "idade":24},
+-- MAGIC     {"nome": "fernando", "idade":34},
+-- MAGIC     {"nome": "bruno", "idade":37},
+-- MAGIC     {"nome": "patrick", "idade":31},
+-- MAGIC     {"nome": "dodo", "idade":31},
+-- MAGIC     {"nome": "alessa", "idade":31},
 -- MAGIC ]
 -- MAGIC 
 -- MAGIC import pandas as pd
 -- MAGIC 
--- MAGIC -- df = pd.DataFrame(data)
--- MAGIC -- df.head()
+-- MAGIC # df = pd.DataFrame(data)
+-- MAGIC # df.head()
 -- MAGIC 
 -- MAGIC df = spark.createDataFrame(pd.DataFrame(data))
 -- MAGIC df.display()
